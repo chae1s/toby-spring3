@@ -9,7 +9,11 @@ import static java.lang.System.getenv;
 
 public class UserDao {
 
-    SimpleConnectionMaker connectionMaker = new SimpleConnectionMaker();
+    ConnectionMaker connectionMaker;
+
+    public UserDao() {
+        this.connectionMaker = new DConnectionMaker();
+    }
 
     public void add(User user) throws ClassNotFoundException, SQLException {
 
@@ -47,11 +51,11 @@ public class UserDao {
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
         UserDao userDao = new UserDao();
         User user = new User();
-        user.setId("2");
+        user.setId("3");
         user.setName("maru");
         user.setPassword("12345678");
         userDao.add(user);
-        user = userDao.get("2");
+        user = userDao.get("3");
         System.out.printf("%s %s %s", user.getId(), user.getName(), user.getPassword());
     }
 }
